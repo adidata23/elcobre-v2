@@ -1,45 +1,45 @@
 import logging
 
-class LogGen:
-    @staticmethod
-    def loggen():
-        logger  = logging.getLogger("Test Login")
-        fileHandler  = logging.FileHandler('.\\YourDesiredFolderName')
-        formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(name)s :%(message)s")
-        fileHandler.setFormatter(formatter)
-        logger.addHandler(fileHandler)
-        logger.setLevel(logging.INFO)
-        return logger
-```
 
-`
-You can pass the name of your test case as a parameter inside the *getLogger()* method.
-The *filehandler* class will handle the your desired location for your logs.
-*Formatter* method will make sure your logs are being stored following a proper format.
-The *logger* variable will return the log at the end of the execution.
+class TestLogger:
+    def __init__(self, log_file_name='test.log', log_level=logging.INFO):
+        self.logger = logging.getLogger('TestLogger')
+        self.logger.setLevel(log_level)
 
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-# Driver code
+        file_handler = logging.FileHandler(log_file_name)
+        file_handler.setFormatter(formatter)
+        self.logger.addHandler(file_handler)
 
-Now it's time to use that *loggen()* function.
-Create another python file to add the driver code. Inside of this file,
-import the *loggen* function by simply using this code `from log.logCapture import logGen`.
-The code is basically for accessing the LogGen class which we created earlier. Then use the logging by just calling the *logger* variable.
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
 
-Let's say we want to test a login page.
-So you can add logs by using `logger.info("You desired massage")` right before the execution of the test case
-or where ever you want. After executing the test cases,
-you will see a log file has been created in your desired folder. The log should look something like this
+    def info(self, message):
+        self.logger.info(message)
 
+    def warning(self, message):
+        self.logger.warning(message)
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l0l5wcqxjz2qcb5q3skr.png)
+    def error(self, message):
+        self.logger.error(message)
 
-This is the output of my logs after executing the test cases. This is how my code looks like behind this
+    def exception(self, message):
+        self.logger.exception(message)
+
+    def critical(self, message):
+        self.logger.critical(message)
 
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/su9g6zdgko1kwvjxo420.png)
+if __name__ == '__main__':
+    logger = TestLogger(log_file_name='test.log', log_level=logging.INFO)
 
-You should be able to use log if you follow this procedure :)
-
-
-> Thanks for reading. Pardon me for the mistakes I may have made as I am new to automation testing and still exploring everyday. I would be glad if it helps anyone. :)
+    logger.info('This is an informational message.')
+    logger.warning('This is a warning message.')
+    logger.error('This is an error message.')
+    try:
+        1 / 0  # To generate an exception
+    except Exception as e:
+        logger.exception('An exception occurred:')
+    logger.critical('This is a critical message.')

@@ -1,6 +1,7 @@
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
+from selenium import webdriver
 
 
 class BaseDriver:
@@ -26,3 +27,6 @@ class BaseDriver:
 
     def select_by_value(self, locator, value):
         Select(self.driver.find_element(locator)).select_by_value(value)
+
+    def click_native(self, locator):
+        self.click(locator)

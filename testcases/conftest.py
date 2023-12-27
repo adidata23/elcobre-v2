@@ -2,13 +2,18 @@ import os
 import pytest
 import logging
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 
-@pytest.fixture(scope = "class")
+@pytest.fixture(scope="class")
 def setup(request):
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    # Create ChromeOptions instance and configure it
+    options = webdriver.ChromeOptions()
+    options.add_argument("--start-maximized")
+
+    # initiate Chrome driver using ChromeDriverManager and options
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     driver.get('https://www.saucedemo.com/')
     driver.maximize_window()
     request.cls.driver = driver
@@ -27,7 +32,7 @@ def logger(name):
     return log_item
 
 
-@pytest.fixture(scope = 'function')
+@pytest.fixture(scope='function')
 def setup_logger(request):
     # full name: 'class name::function name'
     full_name = os.environ.get('PYTEST_CURRENT_TEST').split(' ')[0]
