@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e1b8a8f-c7ae-414d-b8e3-741ae2d2bcba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/base/assertion_driver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/base/base_driver.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/locators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/login_testdata.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/logout_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testcases/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testcases/test_login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testcases/test_logout.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testcases/test_purchase.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testdata/datatestdemo.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/logger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utilities/xl_utils.py" afterDir="false" />
+    <list default="true" id="6e1b8a8f-c7ae-414d-b8e3-741ae2d2bcba" name="Changes" comment="init packages">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/base_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/base_driver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/logout_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logout_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcases/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcases/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/test_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testcases/test_selenium4.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/test_selenium4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities/logger.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/logger.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +33,12 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2PCTmQLK38LSAs9U0VXOXlxMrIU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -48,27 +49,83 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Rebasing master",
-    "last_opened_file_path": "H:/Exploration/pom-simulation"
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Exploration/elcobre-v2/testcases",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Colors",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for test_login.TestLoginPage.test_login_success">
-    <configuration name="Python tests for test_login.TestLoginPage" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pom-simulation" />
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Exploration\elcobre-v2\testdata" />
+      <recent name="D:\Exploration\elcobre-v2\utilities" />
+      <recent name="D:\Exploration\elcobre-v2\base" />
+      <recent name="D:\Exploration\elcobre-v2\pages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_login.TestLoginPage">
+    <configuration name="logger" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="elcobre-v2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utilities" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utilities/logger.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_login.TestLoginPage" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="elcobre-v2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\hisyam\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="SDK_NAME" value="Python 3.10" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_login.TestLoginPage&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="Python tests for test_login.TestLoginPage.test_login_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="pom-simulation" />
+      <module name="elcobre-v2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\hisyam\AppData\Local\Programs\Python\Python310\python.exe" />
+      <option name="SDK_NAME" value="Python 3.10" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_login.TestLoginPage.test_login_success&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_selenium4.test_eight_components" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="elcobre-v2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -76,15 +133,20 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_login.TestLoginPage.test_login_success&quot;" />
+      <option name="_new_target" value="&quot;test_selenium4.test_eight_components&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_login.TestLoginPage.test_login_success" />
         <item itemvalue="Python tests.Python tests for test_login.TestLoginPage" />
+        <item itemvalue="Python tests.Python tests for test_login.TestLoginPage.test_login_success" />
+        <item itemvalue="Python.logger" />
+        <item itemvalue="Python tests.pytest for test_selenium4.test_eight_components" />
       </list>
     </recent_temporary>
   </component>
@@ -96,8 +158,31 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682960222098</updated>
+      <workItem from="1701663940128" duration="2155000" />
+      <workItem from="1702023077905" duration="772000" />
+      <workItem from="1702084217792" duration="595000" />
+      <workItem from="1702547364730" duration="9000" />
+      <workItem from="1703079777642" duration="617000" />
+      <workItem from="1703134565408" duration="2812000" />
+      <workItem from="1703217581601" duration="4392000" />
+      <workItem from="1703644508226" duration="6210000" />
+      <workItem from="1703661432304" duration="4929000" />
+      <workItem from="1704172184037" duration="667000" />
+      <workItem from="1704248501637" duration="7142000" />
     </task>
+    <task id="LOCAL-00001" summary="init packages">
+      <option name="closed" value="true" />
+      <created>1703663200692</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703663200692</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -131,5 +216,25 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="init packages" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/selenium/webdriver/support/ui.py</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/elcobre_v2$logger.coverage" NAME="logger Coverage Results" MODIFIED="1701664875371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utilities" />
+    <SUITE FILE_PATH="coverage/elcobre_v2$.coverage" NAME=" Coverage Results" MODIFIED="1704270146025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcases" />
+    <SUITE FILE_PATH="coverage/elcobre_v2$pytest_for_test_selenium4_test_eight_components.coverage" NAME="pytest for test_selenium4.test_eight_components Coverage Results" MODIFIED="1701664677991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testcases" />
   </component>
 </project>

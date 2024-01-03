@@ -13,7 +13,6 @@ logger = TestLogger(log_file_name='test_case.log')
 
 def test_eight_components():
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-
     logger.info('Starting test case: test_eight_component')
     driver.get("https://www.selenium.dev/selenium/web/web-form.html")
     logger.info('Get url to --> https://www.selenium.dev/selenium/web/web-form.html')

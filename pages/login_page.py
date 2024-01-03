@@ -3,8 +3,6 @@ from pages.locators import Locators as Lc
 
 
 class LoginPage(BaseDriver):
-    def __init__(self, driver):
-        self.driver = driver
 
     def inputUsername(self, userName):
         self.input_text(Lc.USERNAME, userName)

@@ -4,19 +4,21 @@ import logging
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
-
+from pages.logout_page import LogoutPage
 
 @pytest.fixture(scope="class")
 def setup(request):
     # Create ChromeOptions instance and configure it
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
+    option = webdriver.ChromeOptions()
+    option.add_argument("--start-maximized")
+    option.add_experimental_option("excludeSwitches", ["enable-automation"])
 
     # initiate Chrome driver using ChromeDriverManager and options
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
     driver.get('https://www.saucedemo.com/')
-    driver.maximize_window()
     request.cls.driver = driver
+    yield
+    driver.quit()
 
 
 def logger(name):
