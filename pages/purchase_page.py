@@ -3,15 +3,13 @@ from pages.locators import Locators as Lc
 
 
 class PurchasePage(BaseDriver):
-    def __init__(self, driver):
-        self.driver = driver
 
     def clickaddbackpak(self):
         self.click(Lc.PRODUCT_BACKPACK)
 
     def clickaddbike(self):
         self.click(Lc.PRODUCT_BIKE)
-    
+
     def clickchart(self):
         self.click(Lc.CART_BUTTON)
 
@@ -37,7 +35,7 @@ class PurchasePage(BaseDriver):
         self.click(Lc.BACK_TO_PRODUCT)
 
     def selectitemmmm(self, option):
-        self.click(Lc.DROPDOWN, option)    
+        self.click(Lc.DROPDOWN, option)
 
     def selectitemm(self):
         self.select_by_value(Lc.DROPDOWN, "lohi")

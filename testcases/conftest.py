@@ -5,20 +5,30 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from pages.logout_page import LogoutPage
+from pages.login_page import LoginPage
 
-@pytest.fixture(scope="class")
+
+@pytest.fixture()
 def setup(request):
     # Create ChromeOptions instance and configure it
     option = webdriver.ChromeOptions()
     option.add_argument("--start-maximized")
+    # option.add_argument("--headless")
     option.add_experimental_option("excludeSwitches", ["enable-automation"])
 
     # initiate Chrome driver using ChromeDriverManager and options
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
+    print("initiate webdriver on driver")
     driver.get('https://www.saucedemo.com/')
-    request.cls.driver = driver
-    yield
-    driver.quit()
+    print("Got to url")
+    # request.cls.driver = driver
+    yield driver
+    driver.close()
+
+
+@pytest.fixture
+def login(request, setup):
+    return LoginPage(setup)
 
 
 def logger(name):
