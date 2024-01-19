@@ -2,6 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 from pages.logout_page import LogoutPage
 
+
 @pytest.mark.usefixtures("setup")
 class TestLogoutPage:
 

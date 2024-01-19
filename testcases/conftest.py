@@ -4,32 +4,33 @@ import logging
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
-from pages.logout_page import LogoutPage
-from pages.login_page import LoginPage
+from pages import PAGE_CLASSES
 
 
-@pytest.fixture()
+@pytest.fixture
 def setup(request):
-    # Create ChromeOptions instance and configure it
+    # Your setup logic here, e.g., initializing WebDriver
     option = webdriver.ChromeOptions()
     option.add_argument("--start-maximized")
-    # option.add_argument("--headless")
     option.add_experimental_option("excludeSwitches", ["enable-automation"])
-
-    # initiate Chrome driver using ChromeDriverManager and options
     driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
     print("initiate webdriver on driver")
     driver.get('https://www.saucedemo.com/')
     print("Got to url")
-    # request.cls.driver = driver
+
+    # Return the driver to make it available to tests
     yield driver
+
+    # Teardown: Close the browser after the test
     driver.close()
 
 
 @pytest.fixture
-def login(request, setup):
-    return LoginPage(setup)
-
+def page(setup, request):
+    page_type = request.param
+    if page_type not in PAGE_CLASSES:
+        raise ValueError(f"Invalid page_type: {page_type}")
+    return PAGE_CLASSES[page_type](setup)
 
 def logger(name):
     log_item = logging.getLogger(name)
