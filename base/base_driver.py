@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import Select
 
 
-class BaseDriver:
+class BaseDriver(object):
     def __init__(self, driver):
         self.driver = driver
 

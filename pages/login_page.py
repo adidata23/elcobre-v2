@@ -11,6 +11,12 @@ class LoginPage(BaseDriver):
     def inputPassword(self, password):
         self.input_text(Lc.PASSWORD, password)
         print("User input password")
+
     def clickLogin(self):
         self.click(Lc.BUTTON_LOGIN)
         print("User click button login")
+
+    def user_login(self, userName, password):
+        self.inputUsername(userName)
+        self.inputPassword(password)
+        self.clickLogin()
