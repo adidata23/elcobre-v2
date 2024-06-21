@@ -2,11 +2,10 @@ import datetime
 import os
 import re
 import shutil
-import sys
-from fpdf import FPDF
-from fpdf.outline import OutlineSection
-from PIL import Image
 from collections import deque, OrderedDict
+
+from PIL import Image
+from fpdf import FPDF
 
 
 # Inheriting original FPDF (header and footer overriding)
@@ -20,11 +19,23 @@ class PDF(FPDF):
     actual_y_needed = 0
     test_summary_list = []
     table_data = []
+    cvpg_title = ""
+    cvpg_subtitle = ""
+    cvpg_author = ""
+    cvpg_tcid = ""
+    header_tcid = ""
+    header_author = ""
 
     def __init__(self,
                  pdf_filename="",
                  param_path="data/param.txt",
                  result_path="data/scenario_result.txt",
+                 cvpg_title="",
+                 cvpg_subtitle="",
+                 cvpg_author="",
+                 cvpg_tcid="",
+                 header_tcid="",
+                 header_author="",
                  **kwargs
                  ):
         super().__init__(**kwargs)  # Call the parent class's __init__ method
@@ -37,9 +48,14 @@ class PDF(FPDF):
         self.SUMMARY = {}
         self.PARAM = {}
         self.WORKING_DIR = ""
-
         self.result_path = result_path
         self.param_path = param_path
+        self.cvpg_title = cvpg_title
+        self.cvpg_subtitle = cvpg_subtitle
+        self.cvpg_author = cvpg_author
+        self.cvpg_tcid = cvpg_tcid
+        self.header_tcid = header_tcid
+        self.header_author = header_author
 
         # Additional for modular purposes
         if pdf_filename:  # is any string exist on pdf_filename
@@ -92,7 +108,8 @@ class PDF(FPDF):
             self.set_font(style="I", family="Helvetica")
             self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
             self.cell(col_width * 1.5, line_height, "Author", border=1, align="L")
-            self.cell(col_width * 4.1, line_height, self.PARAM["header_author"], border=1, align="L")
+            self.cell(col_width * 4.1, line_height,
+                      self.header_author if self.header_author else self.PARAM["header_author"], border=1, align="L")
             self.cell(col_width * 1.2, line_height * 3, "Page", border=1, align="C")
             self.cell(col_width * 1.2, line_height * 3, f"{'  '}{self.page_no()} of {{nb}}", border=1, align="C")
             self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT")
@@ -102,7 +119,8 @@ class PDF(FPDF):
             self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT")
             self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
             self.cell(col_width * 1.5, line_height, "Test Case ID", border=1, align="L")
-            self.cell(col_width * 4.1, line_height, self.PARAM["header_tcid"], border=1, align="L")
+            self.cell(col_width * 4.1, line_height, self.header_tcid if self.header_tcid else self.PARAM["header_tcid"],
+                      border=1, align="L")
             self.ln(line_height * 2)
 
     def footer(self):
@@ -217,28 +235,32 @@ class PDF(FPDF):
         y_coordinate = self.get_y() + (
                     available_height - content_height) / 2  # Calculate Y-coordinate to center the content vertically
         self.set_y(y_coordinate)  # Set the Y-coordinate for the next content
-        self.multi_cell(w=col_width * 10, h=line_height, txt=self.PARAM["cover_page_title"], align="R", new_x="LEFT",
-                        new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 10, h=line_height,
+                        txt=self.cvpg_title if self.cvpg_title else self.PARAM["cover_page_title"], align="R",
+                        new_x="LEFT", new_y="NEXT", border=0)
 
         # Set 1st page title description
         self.set_font('Helvetica', size=14, style="BI")
-        self.multi_cell(w=col_width * 10, h=line_height, txt=self.PARAM["cover_page_subtitle"], align="R", new_x="LEFT",
-                        new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 10, h=line_height,
+                        txt=self.cvpg_subtitle if self.cvpg_subtitle else self.PARAM["cover_page_subtitle"], align="R",
+                        new_x="LEFT", new_y="NEXT", border=0)
 
         # Set 1st page author
         self.set_font('Helvetica', size=12, style="")
         self.multi_cell(w=col_width * 10, h=line_height * 9, txt="", new_x="LEFT", new_y="NEXT", border=0)
         self.multi_cell(w=col_width * 3.5, h=line_height, txt="", new_x="RIGHT", new_y="TOP", border=0)
         self.multi_cell(w=col_width * 1.5, h=line_height, txt="Author", align="L", new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 2, h=line_height, txt=": " + self.PARAM["cover_page_author"], align="L",
-                        new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 3, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 4, h=line_height,
+                        txt=": " + self.cvpg_author if self.cvpg_author else ": " + self.PARAM["cover_page_author"],
+                        align="L", new_x="RIGHT", new_y="TOP", border=0)
+        self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
         self.multi_cell(w=col_width * 3.5, h=line_height, txt="", new_x="RIGHT", new_y="TOP", border=0)
         self.multi_cell(w=col_width * 1.5, h=line_height, txt="Test Case Id", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
-        self.multi_cell(w=col_width * 3, h=line_height, txt=": " + self.PARAM["cover_page_tcid"], align="L",
-                        new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 2, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 4, h=line_height,
+                        txt=": " + self.cvpg_tcid if self.cvpg_tcid else ": " + self.PARAM["cover_page_tcid"],
+                        align="L", new_x="RIGHT", new_y="TOP", border=0)
+        self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
 
         ###                      ###
         ###       2nd Page       ###
@@ -495,7 +517,11 @@ class PDF(FPDF):
 
 """
 # Testing script new, 20231121
-a = PDF()
+a = PDF(cvpg_subtitle="Sprint 5 VA Billing Creation",
+        cvpg_author="Automation Team - Alfan",
+        cvpg_tcid="VA Billing Static Close",
+        header_author="Automation Team - Alfan",
+        header_tcid="LIFO Multiple Recur.Daily Waive Fix")
 a.data_reader()
 a.generate_report()
 """

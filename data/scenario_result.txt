@@ -1,0 +1,2 @@
+Login with valid data1|1. input username|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-21-19.10.28\191032 input username.jpg|
+Login with valid data1|2. input password|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-21-19.10.28\191034 input password.jpg|

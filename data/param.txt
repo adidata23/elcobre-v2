@@ -1,0 +1,9 @@
+cover_page_title=New Cash Management System
+cover_page_subtitle=NGVA - VA Billing Open Maximum Payment
+cover_page_author=Automation Team
+cover_page_tcid=VB_107 - Transaksi VA Billing Type Open-Max Payment (Tagihan Sudah Terbayar)
+header_title=New Cash Managament System version 1.0.0
+header_author=Automation Team
+header_tools=Python 3.10, Selenium 4.11
+header_tcid=VB_107 - Transaksi VA Billing Type Open-Max Payment (Tagihan Sudah Terbayar)
+footer_center=NCMS

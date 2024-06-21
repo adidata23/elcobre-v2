@@ -1,12 +1,11 @@
-import os
 import datetime
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import os
 from time import sleep
-from base.base_driver import BaseDriver
+
+from selenium.webdriver.common.by import By
 
 
-class TakeScreenshot():
+class TakeScreenshot:
 
     def __init__(self, driver):
         self.driver = driver
@@ -16,7 +15,7 @@ class TakeScreenshot():
         self.img_desc = []
         self.img_result = []
 
-    def set_working_dir(self):
+    def set_working_dir(self) -> object:
         """Set working directory, it is used for storing images, pdf report, and log file
         Args:
             None
@@ -30,7 +29,7 @@ class TakeScreenshot():
         new_folder_path = os.path.join(documents_dir, new_folder_name)
         os.makedirs(new_folder_path, exist_ok=True)  # 2
         current_dt = datetime.datetime.now()
-        formatted_dt = current_dt.strftime("%Y-%m-%d-%H.%M")
+        formatted_dt = current_dt.strftime("%Y-%m-%d-%H.%M.%S")
         working_folder_name = "NCMS" + " " + formatted_dt
         working_folder_path = os.path.join(new_folder_path, working_folder_name)
         self.working_dir = working_folder_path
@@ -75,7 +74,7 @@ class TakeScreenshot():
             2. Ignore .log and .txt file inside directory,
             3. Remove the file on the list if is used/written into scenario_result.txt
             4. Declaring new_file_path to be written into ~data/scenario_result.txt
-            5. Declaring open_mode to the file: a(append) or w(write) 
+            5. Declaring open_mode to the file: a(append) or w(write)
             6. Write into ~data/scenario_result.txt
             7. Emptying working list img_desc and img_result
             8. Aggregating used_file_names (see point 3)
@@ -102,3 +101,4 @@ class TakeScreenshot():
             self.img_desc = []  # 7
             self.img_result = []
         self.used_file_names += self.file_names  # 8
+
