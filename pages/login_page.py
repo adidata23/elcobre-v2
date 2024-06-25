@@ -7,12 +7,12 @@ class LoginPage(BaseDriver):
     def inputUsername(self, userName):
         self.input_text(Lc.USERNAME, userName)
         print("User input username")
-        self.func_take_screenshot_pass(screenshot=True, desc1="input username", desc2="")
+        self.func_take_screenshot_pass(screenshot=True, desc1="input username", desc2="user berhasil inputusername")
 
     def inputPassword(self, password):
         self.input_text(Lc.PASSWORD, password)
         print("User input password")
-        self.func_take_screenshot_pass(screenshot=True, desc1="input password", desc2="")
+        self.func_take_screenshot_pass(screenshot=True, desc1="input password", desc2="user berhasil password")
 
     def clickLogin(self):
         self.click(Lc.BUTTON_LOGIN)

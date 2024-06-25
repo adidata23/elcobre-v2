@@ -4,10 +4,12 @@ import os
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
+from loguru import logger
 
 from pages.login_page import LoginPage
 from utilities.take_screenshot import TakeScreenshot as TS
 from base.base_driver import BaseDriver
+from utilities.report_pdf import PDF
 
 
 # @pytest.fixture
@@ -15,11 +17,10 @@ from base.base_driver import BaseDriver
 #     screenshot = TakeScreenshot(setup)
 #     # screenshot.set_working_dir()
 #     return screenshot
-
+log =logger
 
 @pytest.fixture(scope="session")
 def setup():
-
     # Create ChromeOptions instance and configure it
     option = webdriver.ChromeOptions()
     option.add_argument("--start-maximized")
@@ -31,6 +32,7 @@ def setup():
     # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
     driver = webdriver.Chrome(service=ChromeService(executable_path="C:\webdriver\chromedriver-win64\chromedriver.exe"),
                               options=option)
+
     print("initiate webdriver on driver")
     ss = TS(driver)
     ss.set_working_dir()
@@ -51,6 +53,15 @@ def login(setup):
 
 @pytest.fixture(scope="session", autouse=True)
 def before_test_session(setup):
+    driver, ss = setup
+
+    log.add(ss.working_dir + "/tracelog.log",  # self.ss_obj.working_dir+
+               format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level}\t{message}",
+               level="INFO",
+               catch=False,
+               backtrace=False,
+               # diagnose=False
+               )
     setup[0].maximize_window()
     print("=====BEFORE TEST SESSION=====")
     print("Open browser")
@@ -91,6 +102,18 @@ def after_test_method(setup):
 def after_test_session(setup):
     yield  # Yield to ensure this runs after all tests
     print("=====AFTER TEST SESSION=====")
+    driver, ss = setup
+    pdf = PDF(pdf_filename=ss.working_dir + "//TestingPDF_elcobrev2.pdf",
+              param_path="elcobre-v2/data/param.txt",
+              result_path="elcobre-v2/data/scenario_result.txt",
+              cvpg_subtitle="Liquid Managemen - Cash Ditribution",
+              cvpg_author="Automation Team",
+              cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",
+              header_author="Automation Team",
+              header_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate")
+    pdf.data_reader()
+    pdf.generate_report()
+
     setup[0].refresh()
     setup[0].quit()
 

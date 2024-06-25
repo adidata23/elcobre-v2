@@ -28,8 +28,8 @@ class PDF(FPDF):
 
     def __init__(self,
                  pdf_filename="",
-                 param_path="data/param.txt",
-                 result_path="data/scenario_result.txt",
+                 param_path="D://Exploration//elcobre-v2//data//param.txt",
+                 result_path="D://Exploration//elcobre-v2//data//scenario_result.txt",
                  cvpg_title="",
                  cvpg_subtitle="",
                  cvpg_author="",
@@ -225,7 +225,7 @@ class PDF(FPDF):
         col_width = epw / 10
 
         # Set BSI logo
-        self.image('bsi example//1st_page_bsi_logo.png', self.w - 70, 30, 60, 0)
+        self.image("D://Exploration//elcobre-v2//data//bsi_logo.png", self.w - 70, 30, 60, 0)
 
         # Set 1st page cover title
         line_height = self.font_size * 1
@@ -501,7 +501,7 @@ class PDF(FPDF):
             script_dir = os.path.dirname(
                 script_dir)  # Up one directory, modified because moving report_pdf into /script
             script_dir = os.path.dirname(script_dir)
-            file_path = os.path.join(script_dir, r"data/scenario_result.txt")
+            file_path = os.path.join(script_dir, r"D://Exploration//elcobre-v2//data//scenario_result.txt")
             shutil.copyfile(file_path, documents_path)
 
         # Checking condition if pdf_filename is absolute path or not

@@ -1,2 +1,3 @@
-Login with valid data1|1. input username|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-21-19.10.28\191032 input username.jpg|
-Login with valid data1|2. input password|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-21-19.10.28\191034 input password.jpg|
+Login with valid data6|1. input username|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-25-19.34.13\193451 input username.jpg|user berhasil inputusername
+Login with valid data6|2. input password|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-25-19.34.13\193454 input password.jpg|user berhasil password
+Login with valid data6|3. Login success5|Passed|C:\Users\hisyam/Documents\Test Capture\NCMS 2024-06-25-19.34.13\193456 Login success5.jpg|

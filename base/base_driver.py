@@ -4,14 +4,16 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from loguru import logger
+from utilities.take_screenshot import TakeScreenshot as TS
 from utilities.take_screenshot import TakeScreenshot
 
 
 class BaseDriver(object):
+    ss: TS
+
     def __init__(self, driver, ss):
         self.driver = driver
         self.ss = ss
-
 
     def click(self, locator):
         try:
