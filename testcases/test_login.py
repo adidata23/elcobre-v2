@@ -4,9 +4,6 @@ from base.base_driver import BaseDriver as BD
 
 class TestLoginPage:
 
-    def get_working_dir(self, base):
-        return base.ss.working_dir
-
     def test_login_success1(self, base, login):
         login.inputUsername("standard_user")
         login.inputPassword("secret_sauce")
@@ -41,5 +38,3 @@ class TestLoginPage:
         base.ss.write_scenario_txt("Login with valid data6", False)
         login.user_login("visual_user", "secret_sauce")
         base.func_take_screenshot_pass(screenshot=True, desc1="Login success6", desc2="")
-
-

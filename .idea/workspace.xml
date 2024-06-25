@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e1b8a8f-c7ae-414d-b8e3-741ae2d2bcba" name="Changes" comment="init packages">
-      <change afterPath="$PROJECT_DIR$/data/1st_page_bsi_logo.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/base/base_driver.py" beforeDir="false" afterPath="$PROJECT_DIR$/base/base_driver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/scenario_result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/scenario_result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/TestingPDF_elcobrev2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/report/TestingPDF_elcobrev2.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testcases/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/conftest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testcases/test_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/testcases/test_login.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities/report_pdf.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities/report_pdf.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +236,7 @@
       <workItem from="1718867757173" duration="3208000" />
       <workItem from="1718938570490" duration="13293000" />
       <workItem from="1719197187566" duration="8709000" />
-      <workItem from="1719307844422" duration="5374000" />
+      <workItem from="1719307844422" duration="9264000" />
     </task>
     <task id="LOCAL-00001" summary="init packages">
       <option name="closed" value="true" />

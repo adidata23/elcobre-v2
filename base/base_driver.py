@@ -20,12 +20,14 @@ class BaseDriver(object):
             WebDriverWait(self.driver, 10).until(ec.element_to_be_clickable(locator)).click()
         except TimeoutException:
             print(f"TimeoutException: Click operation failed. Element not clickable within 10 seconds.")
+        logger.info("Click element" + " " + locator[0] + " " + locator[1])
 
     def input_text(self, locator, text):
         try:
             WebDriverWait(self.driver, 10).until(ec.visibility_of_element_located(locator)).send_keys(text)
         except TimeoutException:
             print(f"TimeoutException: Input text operation failed. Element not visible within 10 seconds.")
+        logger.info("Click element" + " " + locator[0] + " " + locator[1])
 
     def get_title(self, title) -> str:
         try:
@@ -62,19 +64,16 @@ class BaseDriver(object):
         except TimeoutException:
             print(f"TimeoutException: Select by value operation failed. Element not found within 10 seconds.")
 
-    @logger.catch(reraise=True)
     def func_take_screenshot_fail(self, screenshot, desc1="", desc2=""):
         if screenshot:
             self.ss.take_ss_w_desc("Failed", desc1, desc2)
-            logger.error(f"Take screenshot fail: '{desc1}' - '{desc2}'")
+            # logger.error(f"Take screenshot fail: '{desc1}' - '{desc2}'")
 
-    @logger.catch(reraise=True)
     def func_take_screenshot_pass(self, screenshot, desc1="", desc2=""):
         if screenshot:
             self.ss.take_ss_w_desc("Passed", desc1, desc2)
             logger.info(f"Take screenshot pass: '{desc1}' - '{desc2}'")
 
-    @logger.catch(reraise=True)
     def func_take_screenshot_by_element(self, screenshot, alias="", by=By.ID, locator="", desc1="", desc2="",
                                         status="passed"):
         alias = self.driver.find_element(by, locator)
@@ -87,36 +86,30 @@ class BaseDriver(object):
             self.ss.take_ss_w_desc("Passed", desc1, desc2)
             logger.info(f"Take screenshot pass: '{desc1}' - '{desc2}'")
 
-    @logger.catch(reraise=True)
     def func_upload(self, by=By.ID, locator="", path=""):
         WebDriverWait.until(ec.presence_of_element_located((by, locator)))
         logger.info(f"Element wait located by '{by}' = '{locator}'")
         self.driver.find_element(by, locator).send_keys(path)
         logger.info(f"Element send keys located by '{by}' = '{locator}', file path = {path}")
 
-    @logger.catch(reraise=True)
     def func_window_close(self):
         """webdriver close()
         """
         self.driver.close()
         logger.info("Webdriver close window")
 
-    @logger.catch(reraise=True)
     def func_window_maximize(self):
         self.driver.maximize_window()
 
-    @logger.catch(reraise=True)
     def func_window_new_close(self):
         self.driver.switch_to.window(self.driver.window_handles[0])
         logger.info("Webdriver switch to window [0]")
 
-    @logger.catch(reraise=True)
     def func_window_open_new(self, num=1):
         newtab = self.driver.window_handles[num]
         self.driver.switch_to.window(newtab)
         logger.info(f"Webdriver switch to window [{num}]")
 
-    @logger.catch(reraise=True)
     def func_window_open_new_tab(self, url):
         assert len(self.driver.window_handles) == 1, "Window Handles total (len) is not 1"
         logger.info(f"Assert check current window handles total = {len(self.driver.window_handles)}")

@@ -11,13 +11,8 @@ from utilities.take_screenshot import TakeScreenshot as TS
 from base.base_driver import BaseDriver
 from utilities.report_pdf import PDF
 
+log = logger
 
-# @pytest.fixture
-# def scr_shot(setup):
-#     screenshot = TakeScreenshot(setup)
-#     # screenshot.set_working_dir()
-#     return screenshot
-log =logger
 
 @pytest.fixture(scope="session")
 def setup():
@@ -30,12 +25,20 @@ def setup():
 
     # initiate Chrome driver using ChromeDriverManager and options
     # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
+    log.info("Initiate Webdriver Chrome")
     driver = webdriver.Chrome(service=ChromeService(executable_path="C:\webdriver\chromedriver-win64\chromedriver.exe"),
                               options=option)
-
+    log.info("Initiate TakeScreenShot and Set Working Directory")
     print("initiate webdriver on driver")
     ss = TS(driver)
     ss.set_working_dir()
+    log.add(ss.working_dir + "/tracelog.log",  # self.ss_obj.working_dir+
+            format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level}\t{message}",
+            level="INFO",
+            catch=False,
+            backtrace=False,
+            # diagnose=False
+            )
     yield driver, ss
     driver.quit()
 
@@ -54,14 +57,7 @@ def login(setup):
 @pytest.fixture(scope="session", autouse=True)
 def before_test_session(setup):
     driver, ss = setup
-
-    log.add(ss.working_dir + "/tracelog.log",  # self.ss_obj.working_dir+
-               format="{time:YYYY-MM-DD HH:mm:ss.SSS} {level}\t{message}",
-               level="INFO",
-               catch=False,
-               backtrace=False,
-               # diagnose=False
-               )
+    log.info("Maximize window")
     setup[0].maximize_window()
     print("=====BEFORE TEST SESSION=====")
     print("Open browser")
@@ -73,7 +69,9 @@ def before_test_session(setup):
 def before_test_method(setup):
     print("=====BEFORE TEST METHOD=====")
     print("Access to website")
-    setup[0].get('https://www.saucedemo.com/')
+    url = 'https://www.saucedemo.com/'
+    log.info("Go to Website url --> " + url)
+    setup[0].get(url)
 
 
 @pytest.fixture(autouse=True)
@@ -103,6 +101,7 @@ def after_test_session(setup):
     yield  # Yield to ensure this runs after all tests
     print("=====AFTER TEST SESSION=====")
     driver, ss = setup
+    log.info("Initiate PDF Object")
     pdf = PDF(pdf_filename=ss.working_dir + "//TestingPDF_elcobrev2.pdf",
               param_path="elcobre-v2/data/param.txt",
               result_path="elcobre-v2/data/scenario_result.txt",
@@ -111,10 +110,13 @@ def after_test_session(setup):
               cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",
               header_author="Automation Team",
               header_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate")
+    log.info("Run PDF reader scenario result")
     pdf.data_reader()
+    log.info("Run generate report PDF")
     pdf.generate_report()
 
     setup[0].refresh()
+    log.info("Browser tab quit")
     setup[0].quit()
 
 
