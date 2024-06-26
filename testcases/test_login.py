@@ -4,11 +4,12 @@ from base.base_driver import BaseDriver as BD
 
 class TestLoginPage:
 
-    def test_login_success1(self, base, login):
+    def test_login_success1(self, base,instance_pages):
+        instance_pages.login_page.user_login()
+        base.ss.write_scenario_txt("Login with valid data1", False)
         login.inputUsername("standard_user")
         login.inputPassword("secret_sauce")
         login.clickLogin()
-        base.ss.write_scenario_txt("Login with valid data1", False)
         assert login.url_success_login() == "https://www.saucedemo.com/inventory.html"
         base.func_take_screenshot_pass(screenshot=True, desc1="Login success1", desc2="")
 

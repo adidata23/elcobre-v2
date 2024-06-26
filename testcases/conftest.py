@@ -5,11 +5,13 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from loguru import logger
-
+from pages.logout_page import LogoutPage
 from pages.login_page import LoginPage
+from pages.purchase_page import PurchasePage
 from utilities.take_screenshot import TakeScreenshot as TS
 from base.base_driver import BaseDriver
 from utilities.report_pdf import PDF
+from webdriver_manager.chrome import ChromeDriverManager
 
 log = logger
 
@@ -24,7 +26,7 @@ def setup():
     option.add_experimental_option("excludeSwitches", ["enable-automation"])
 
     # initiate Chrome driver using ChromeDriverManager and options
-    # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
     log.info("Initiate Webdriver Chrome")
     driver = webdriver.Chrome(service=ChromeService(executable_path="C:\webdriver\chromedriver-win64\chromedriver.exe"),
                               options=option)
@@ -43,6 +45,13 @@ def setup():
     driver.quit()
 
 
+class Pages:
+    def __init__(self, setup):
+        self.login_page = LoginPage(setup[0], setup[1])
+        self.logout_page = LogoutPage(setup[0], setup[1])
+        self.purchase_page = PurchasePage(setup[0], setup[1])
+
+
 @pytest.fixture
 def base(setup):
     driver, ss = setup
@@ -52,6 +61,11 @@ def base(setup):
 @pytest.fixture
 def login(setup):
     return LoginPage(setup[0], setup[1])
+
+
+@pytest.fixture
+def instance_pages(setup):
+    return Pages(setup)
 
 
 @pytest.fixture(scope="session", autouse=True)
