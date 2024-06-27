@@ -25,8 +25,8 @@ def setup():
     # option.add_argument("--headless")
     option.add_experimental_option("excludeSwitches", ["enable-automation"])
 
-    # initiate Chrome driver using ChromeDriverManager and options
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=option)
+    # initiate Chrome driver using ChromeDriverManager and options driver = webdriver.Chrome(service=ChromeService(
+    # ChromeDriverManager().install()), options=option) #initiate driver for mac
     log.info("Initiate Webdriver Chrome")
     driver = webdriver.Chrome(service=ChromeService(executable_path="C:\webdriver\chromedriver-win64\chromedriver.exe"),
                               options=option)
@@ -59,12 +59,7 @@ def base(setup):
 
 
 @pytest.fixture
-def login(setup):
-    return LoginPage(setup[0], setup[1])
-
-
-@pytest.fixture
-def instance_pages(setup):
+def pages(setup):
     return Pages(setup)
 
 
@@ -117,8 +112,8 @@ def after_test_session(setup):
     driver, ss = setup
     log.info("Initiate PDF Object")
     pdf = PDF(pdf_filename=ss.working_dir + "//TestingPDF_elcobrev2.pdf",
-              param_path="elcobre-v2/data/param.txt",
-              result_path="elcobre-v2/data/scenario_result.txt",
+              param_path="elcobre-v2//data//param.txt",
+              result_path="elcobre-v2//data//scenario_result.txt",
               cvpg_subtitle="Liquid Managemen - Cash Ditribution",
               cvpg_author="Automation Team",
               cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",

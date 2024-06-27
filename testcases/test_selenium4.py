@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from utilities.logger import TestLogger
 
 # Create an instance of the TestLogger class
-logger = TestLogger(log_file_name='test_case.log')
+logger = TestLogger(log_file_name='test_case.log', log_level="INFO")
 
 
 def test_eight_components():
