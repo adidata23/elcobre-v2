@@ -10,7 +10,7 @@ class TestLoginPage2:
         pages.login_page.clickLogin()
         assert pages.login_page.url_success_login() == "https://www.saucedemo.com/inventory.html"
         base.func_take_screenshot_pass(screenshot=True, desc1="Testing 2 Module of Login1", desc2="image descriptions")
-        base.ss.write_scenario_txt("Login with valid data1", False)
+        base.ss.write_scenario_txt("Login with valid data1")
 
     def test_success2(self, base, pages):
         pages.login_page.inputUsername('problem_user')

@@ -61,7 +61,7 @@ class TakeScreenshot:
             "%H%M%S")  # datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
                                        + " "
                                        + filename
-                                       + '.jpg')
+                                       + '.png')
         self.driver.find_element(By.XPATH, "/html").screenshot(screenshot_path)
 
     def write_scenario_txt(self, scenario_name, append_write=True):

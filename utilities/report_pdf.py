@@ -71,13 +71,13 @@ class PDF(FPDF):
     def render_toc(self, pdf, outline_list):
         toc_format = "{:<40} {:>10}"
         self.set_font("Helvetica", size=16)
-        self.multi_cell(w=self.epw, h=self.font_size * 1.2, txt="", new_x="LMARGIN", new_y="NEXT")
+        self.multi_cell(w=self.epw, h=self.font_size * 1.2, text="", new_x="LMARGIN", new_y="NEXT")
         self.set_font("Courier", size=10, style="B")  # Courier 10
         for section in outline_list:
             link = self.add_link(page=section.page_number)
             self.multi_cell(w=self.epw,
                             h=self.font_size * 1.2,
-                            txt=f'{" " * section.level * 2} {section.name} {"." * (83 - section.level * 2 - len(section.name))} {section.page_number}',
+                            text=f'{" " * section.level * 2} {section.name} {"." * (83 - section.level * 2 - len(section.name))} {section.page_number}',
                             new_x="LMARGIN",
                             new_y="NEXT",
                             align="L",
@@ -99,25 +99,25 @@ class PDF(FPDF):
             line_height = self.font_size * 1.2
             col_width = self.epw / 10
             self.set_font(style="I", family="Helvetica")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
-            self.multi_cell(w=col_width * 1.5, h=line_height, txt="Title", new_x="RIGHT", new_y="TOP", border=1,
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="RIGHT", new_y="TOP")
+            self.multi_cell(w=col_width * 1.5, h=line_height, text="Title", new_x="RIGHT", new_y="TOP", border=1,
                             align="L")
             self.set_font(style="BI", family="Helvetica")
             self.cell(col_width * 6.5, line_height, self.PARAM["header_title"], border=1, align="L")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="LMARGIN", new_y="NEXT")
             self.set_font(style="I", family="Helvetica")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="RIGHT", new_y="TOP")
             self.cell(col_width * 1.5, line_height, "Author", border=1, align="L")
             self.cell(col_width * 4.1, line_height,
                       self.header_author if self.header_author else self.PARAM["header_author"], border=1, align="L")
             self.cell(col_width * 1.2, line_height * 3, "Page", border=1, align="C")
             self.cell(col_width * 1.2, line_height * 3, f"{'  '}{self.page_no()} of {{nb}}", border=1, align="C")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="LMARGIN", new_y="NEXT")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="RIGHT", new_y="TOP")
             self.cell(col_width * 1.5, line_height, "Tools", border=1, align="L")
             self.cell(col_width * 4.1, line_height, self.PARAM["header_tools"], border=1, align="L")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT")
-            self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="RIGHT", new_y="TOP")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="LMARGIN", new_y="NEXT")
+            self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="RIGHT", new_y="TOP")
             self.cell(col_width * 1.5, line_height, "Test Case ID", border=1, align="L")
             self.cell(col_width * 4.1, line_height, self.header_tcid if self.header_tcid else self.PARAM["header_tcid"],
                       border=1, align="L")
@@ -236,31 +236,31 @@ class PDF(FPDF):
                     available_height - content_height) / 2  # Calculate Y-coordinate to center the content vertically
         self.set_y(y_coordinate)  # Set the Y-coordinate for the next content
         self.multi_cell(w=col_width * 10, h=line_height,
-                        txt=self.cvpg_title if self.cvpg_title else self.PARAM["cover_page_title"], align="R",
+                        text=self.cvpg_title if self.cvpg_title else self.PARAM["cover_page_title"], align="R",
                         new_x="LEFT", new_y="NEXT", border=0)
 
         # Set 1st page title description
         self.set_font('Helvetica', size=14, style="BI")
         self.multi_cell(w=col_width * 10, h=line_height,
-                        txt=self.cvpg_subtitle if self.cvpg_subtitle else self.PARAM["cover_page_subtitle"], align="R",
+                        text=self.cvpg_subtitle if self.cvpg_subtitle else self.PARAM["cover_page_subtitle"], align="R",
                         new_x="LEFT", new_y="NEXT", border=0)
 
         # Set 1st page author
         self.set_font('Helvetica', size=12, style="")
-        self.multi_cell(w=col_width * 10, h=line_height * 9, txt="", new_x="LEFT", new_y="NEXT", border=0)
-        self.multi_cell(w=col_width * 3.5, h=line_height, txt="", new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 1.5, h=line_height, txt="Author", align="L", new_x="RIGHT", new_y="TOP", border=0)
+        self.multi_cell(w=col_width * 10, h=line_height * 9, text="", new_x="LEFT", new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 3.5, h=line_height, text="", new_x="RIGHT", new_y="TOP", border=0)
+        self.multi_cell(w=col_width * 1.5, h=line_height, text="Author", align="L", new_x="RIGHT", new_y="TOP", border=0)
         self.multi_cell(w=col_width * 4, h=line_height,
-                        txt=": " + self.cvpg_author if self.cvpg_author else ": " + self.PARAM["cover_page_author"],
+                        text=": " + self.cvpg_author if self.cvpg_author else ": " + self.PARAM["cover_page_author"],
                         align="L", new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
-        self.multi_cell(w=col_width * 3.5, h=line_height, txt="", new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 1.5, h=line_height, txt="Test Case Id", align="L", new_x="RIGHT", new_y="TOP",
+        self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="LMARGIN", new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 3.5, h=line_height, text="", new_x="RIGHT", new_y="TOP", border=0)
+        self.multi_cell(w=col_width * 1.5, h=line_height, text="Test Case Id", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
         self.multi_cell(w=col_width * 4, h=line_height,
-                        txt=": " + self.cvpg_tcid if self.cvpg_tcid else ": " + self.PARAM["cover_page_tcid"],
+                        text=": " + self.cvpg_tcid if self.cvpg_tcid else ": " + self.PARAM["cover_page_tcid"],
                         align="L", new_x="RIGHT", new_y="TOP", border=0)
-        self.multi_cell(w=col_width * 1, h=line_height, txt="", new_x="LMARGIN", new_y="NEXT", border=0)
+        self.multi_cell(w=col_width * 1, h=line_height, text="", new_x="LMARGIN", new_y="NEXT", border=0)
 
         ###                      ###
         ###       2nd Page       ###
@@ -270,7 +270,7 @@ class PDF(FPDF):
         self.start_section(name="Table of Contents", level=0, strict=True)
         line_height = self.font_size * 1.15
         self.set_font('Helvetica', size=18, style="B")
-        self.multi_cell(w=col_width * 10, h=line_height * 3, txt="Table of Contents", align="C", new_x="LMARGIN",
+        self.multi_cell(w=col_width * 10, h=line_height * 3, text="Table of Contents", align="C", new_x="LMARGIN",
                         new_y="NEXT", border=0)
 
         # Write the table of contents using fpdf2 built-in
@@ -296,7 +296,7 @@ class PDF(FPDF):
         # self.add_page() # commented because toc_placeholder built-in method has include add_page()
         self.start_section(name="Document Summary", level=0, strict=True)
         self.set_font('Helvetica', size=18, style="B")
-        self.multi_cell(w=col_width * 10, h=line_height * 4, txt="Document Summary", align="C", new_x="LMARGIN",
+        self.multi_cell(w=col_width * 10, h=line_height * 4, text="Document Summary", align="C", new_x="LMARGIN",
                         new_y="NEXT", border=0)
 
         # Test Summary
@@ -304,58 +304,59 @@ class PDF(FPDF):
         self.set_fill_color(135, 206, 235)  # Sky blue color
         test_summary_list = [list(self.SUMMARY.keys()), [str(value) for value in
                                                          self.SUMMARY.values()]]  # Convert the test_summary dictionary into the list format
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[0][0], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[0][0], align="C", new_x="RIGHT",
                         new_y="TOP", border=1, fill=True)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[0][1], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[0][1], align="C", new_x="RIGHT",
                         new_y="TOP", border=1, fill=True)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[0][2], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[0][2], align="C", new_x="RIGHT",
                         new_y="TOP", border=1, fill=True)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[0][3], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[0][3], align="C", new_x="RIGHT",
                         new_y="TOP", border=1, fill=True)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[0][4], align="C", new_x="LMARGIN",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[0][4], align="C", new_x="LMARGIN",
                         new_y="NEXT", border=1, fill=True)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[1][0], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[1][0], align="C", new_x="RIGHT",
                         new_y="TOP", border=1)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[1][1], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[1][1], align="C", new_x="RIGHT",
                         new_y="TOP", border=1)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[1][2], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[1][2], align="C", new_x="RIGHT",
                         new_y="TOP", border=1)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[1][3], align="C", new_x="RIGHT",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[1][3], align="C", new_x="RIGHT",
                         new_y="TOP", border=1)
-        self.multi_cell(w=col_width * 2, h=line_height * 1.5, txt=test_summary_list[1][4], align="C", new_x="LMARGIN",
+        self.multi_cell(w=col_width * 2, h=line_height * 1.5, text=test_summary_list[1][4], align="C", new_x="LMARGIN",
                         new_y="NEXT", border=1)
         self.ln(line_height * 0.5)
 
         # Test Summary Legends
         self.set_font("Helvetica", size=9, style="B")
-        self.multi_cell(w=col_width * 10, h=self.font_size, txt="Legend :", align="L", new_x="LMARGIN", new_y="NEXT",
+        self.multi_cell(w=col_width * 10, h=self.font_size, text="Legend :", align="L", new_x="LMARGIN", new_y="NEXT",
                         border=0)
         self.set_font("Helvetica", size=7, style="B")
         self.set_text_color(0, 128, 0)
-        self.multi_cell(w=col_width * 0.7, h=self.font_size, txt="Passed", align="L", new_x="RIGHT", new_y="TOP",
+        self.multi_cell(w=col_width * 0.7, h=self.font_size, text="Passed", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
         self.set_text_color(0, 0, 0)
         self.multi_cell(w=col_width * 9.3, h=self.font_size,
-                        txt=": A step with a success verification/a scenario with success verification without warning/failed step",
+                        text=": A step with a success verification/a scenario with success verification without "
+                             "warning/failed step",
                         align="L", new_x="LMARGIN", new_y="NEXT", border=0)
         self.set_text_color(220, 50, 0)
-        self.multi_cell(w=col_width * 0.7, h=self.font_size, txt="Failed", align="L", new_x="RIGHT", new_y="TOP",
+        self.multi_cell(w=col_width * 0.7, h=self.font_size, text="Failed", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
         self.set_text_color(0, 0, 0)
         self.multi_cell(w=col_width * 9.3, h=self.font_size,
-                        txt=": A step with a failed verification/a scenario that contains any failed step", align="L",
+                        text=": A step with a failed verification/a scenario that contains any failed step", align="L",
                         new_x="LMARGIN", new_y="NEXT", border=0)
         self.set_text_color(255, 204, 0)
-        self.multi_cell(w=col_width * 0.7, h=self.font_size, txt="Warning", align="L", new_x="RIGHT", new_y="TOP",
+        self.multi_cell(w=col_width * 0.7, h=self.font_size, text="Warning", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
         self.set_text_color(0, 0, 0)
         self.multi_cell(w=col_width * 9.3, h=self.font_size,
-                        txt=": A step with minor bug or defect/a scenario that contain any warning step without any failed step. e.g: Displayed message is incorrect.",
+                        text=": A step with minor bug or defect/a scenario that contain any warning step without any failed step. e.g: Displayed message is incorrect.",
                         align="L", new_x="LMARGIN", new_y="NEXT", border=0)
-        self.multi_cell(w=col_width * 0.7, h=self.font_size, txt="Done", align="L", new_x="RIGHT", new_y="TOP",
+        self.multi_cell(w=col_width * 0.7, h=self.font_size, text="Done", align="L", new_x="RIGHT", new_y="TOP",
                         border=0)
         self.multi_cell(w=col_width * 9.3, h=self.font_size,
-                        txt=": A step without any verification/a scenario without any passed, warning or failed step",
+                        text=": A step without any verification/a scenario without any passed, warning or failed step",
                         align="L", new_x="LMARGIN", new_y="NEXT", border=0)
         self.ln(line_height)
 
@@ -368,8 +369,8 @@ class PDF(FPDF):
         self.cell(col_width * 1.5, line_height, "Status", border=1, align="C", fill=True)
         self.ln()
 
-        # Make a deque data structure to improving performance on pop->popleft function (using "from collections import deque")
-        # Read these "why pop() is efficient on deque (double ended queue) rather than list"
+        # Make a deque data structure to improving performance on pop->popleft function (using "from collections
+        # import deque") Read these "why pop() is efficient on deque (double ended queue) rather than list"
         deque_test_step = deque(self.SCENARIO_SAMPLE)
         # write the content table
         line_height = self.font_size * 1.4
@@ -383,7 +384,7 @@ class PDF(FPDF):
                 self.set_text_color(255, 204, 0)
             elif self.modified_dummy_scenario_sample[index][1] == "Failed":
                 self.set_text_color(220, 50, 0)
-            self.multi_cell(w=col_width * 2.5, h=line_height, txt=unique_scenario, align="L", new_x="RIGHT",
+            self.multi_cell(w=col_width * 2.5, h=line_height, text=unique_scenario, align="L", new_x="RIGHT",
                             new_y="TOP")
             self.set_text_color(0, 0, 0)
             iteration_cnt = 0
@@ -422,9 +423,9 @@ class PDF(FPDF):
             self.set_font('Helvetica', size=self.font_size_lv0, style="B")
             count = self.DICT_SCENARIO_COUNT.get(unique_scenario, 0)
             self.start_section(name=unique_scenario, level=0, strict=True)
-            self.multi_cell(w=col_width * 10, h=line_height * 1.2, txt=unique_scenario, align="C", new_x="LMARGIN",
+            self.multi_cell(w=col_width * 10, h=line_height * 1.2, text=unique_scenario, align="C", new_x="LMARGIN",
                             new_y="NEXT", border=0)
-            self.multi_cell(w=col_width * 10, h=line_height, txt="", align="C", new_x="LMARGIN", new_y="NEXT", border=0)
+            self.multi_cell(w=col_width * 10, h=line_height, text="", align="C", new_x="LMARGIN", new_y="NEXT", border=0)
             count_step = 0  # used for checking last of test step iteration
             image_desc = ""
             for _ in range(count):
@@ -455,7 +456,7 @@ class PDF(FPDF):
                 self.set_font('Helvetica', size=self.font_size_lv1, style="B")
                 self.set_text_color(50, 50, 220)
                 self.start_section(name=deque_test_step[0][1], level=1, strict=True)
-                self.multi_cell(w=col_width * 10, h=line_height, txt=deque_test_step[0][1], align="L", new_x="LMARGIN",
+                self.multi_cell(w=col_width * 10, h=line_height, text=deque_test_step[0][1], align="L", new_x="LMARGIN",
                                 new_y="NEXT", border=0)
                 self.set_text_color(0, 0, 0)
 
@@ -469,10 +470,10 @@ class PDF(FPDF):
                            0]) == 4:  # This condition is for older version of scenario_result.txt, use elif instead
 
                     # Using regex to capture the file name to be inputted into image description
-                    match = re.search(r'\\([^\\]+\.jpg)', deque_test_step[0][3])  # \\image\\(.*\.jpg)
+                    match = re.search(r'\\([^\\]+\.png)', deque_test_step[0][3])  # \\image\\(.*\.png)
                     if match:
                         image_desc = match.group(1)
-                        image_desc = image_desc[:-4]  # Remove the last 4 characters (.jpg)
+                        image_desc = image_desc[:-4]  # Remove the last 4 characters (.png)
 
                 elif len(deque_test_step[0]) == 5:
                     image_desc = deque_test_step[0][4]
@@ -480,7 +481,7 @@ class PDF(FPDF):
                 # Add image description here
                 self.set_font('Helvetica', size=self.font_size_img_desc, style="I")
                 self.set_x(15)  # left indentation of the img_description
-                self.multi_cell(w=col_width * 10, h=line_height, txt=image_desc, align="L", new_x="LMARGIN",
+                self.multi_cell(w=col_width * 10, h=line_height, text=image_desc, align="L", new_x="LMARGIN",
                                 new_y="NEXT", border=0)
                 self.ln()
 
