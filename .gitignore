@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+.idea/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -163,4 +164,3 @@ cython_debug/
 /testcases/.pytest_cache/
 >>>>>>> b7161f3 (update)
 
-.idea/workspace.xml
