@@ -16,7 +16,7 @@ class Locators:
     ZIPCODE_CHECKOUT = (By.ID, "postal-code")
     CONTINUE_BUTTON = (By.ID, "continue")
     FINISH_BUTTON = (By.ID, "finish")
-    COMPLETE_LABLE = (By.ID, "checkout_complete_container")
+    COMPLETE_LABEL = (By.ID, "checkout_complete_container")
     PRODUCT_LABEL = (By.ID, "inventory_filter_container")
     BACK_TO_PRODUCT = (By.ID, "back-to-products")
     DROPDOWN = (By.CLASS_NAME, "product_sort_container")

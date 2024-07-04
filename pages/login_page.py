@@ -2,6 +2,7 @@ from base.base_driver import BaseDriver
 from pages.locators import Locators as Lc
 from loguru import logger
 
+
 class LoginPage(BaseDriver):
 
     def inputUsername(self, userName):

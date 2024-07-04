@@ -4,38 +4,38 @@ from pages.locators import Locators as Lc
 
 class PurchasePage(BaseDriver):
 
-    def clickaddbackpak(self):
+    def click_add_backpack(self):
         self.click(Lc.PRODUCT_BACKPACK)
 
-    def clickaddbike(self):
+    def click_add_bike(self):
         self.click(Lc.PRODUCT_BIKE)
 
-    def clickchart(self):
+    def click_chart(self):
         self.click(Lc.CART_BUTTON)
 
-    def clickcheckout(self):
+    def click_checkout(self):
         self.click(Lc.CHECKOUT_BUTTON)
 
-    def inputFirstname(self, firstName):
+    def input_firstname(self, firstName):
         self.input_text(Lc.FIRST_NAME_CHECKOUT, firstName)
 
-    def inputLastname(self, lastName):
+    def input_lastname(self, lastName):
         self.input_text(Lc.LAST_NAME_CHECKOUT, lastName)
 
-    def inputPostalCode(self, postalCode):
+    def input_postalcode(self, postalCode):
         self.input_text(Lc.ZIPCODE_CHECKOUT, postalCode)
 
     def clickcontinue(self):
         self.click(Lc.CONTINUE_BUTTON)
 
-    def clickfinish(self):
+    def click_finish(self):
         self.click(Lc.FINISH_BUTTON)
 
-    def clickbackttoproduct(self):
+    def click_back_to_product(self):
         self.click(Lc.BACK_TO_PRODUCT)
 
-    def selectitemmmm(self, option):
+    def select_item(self, option):
         self.click(Lc.DROPDOWN, option)
 
-    def selectitemm(self):
+    def select_itemm(self):
         self.select_by_value(Lc.DROPDOWN, "lohi")
