@@ -105,16 +105,30 @@ def after_test_method(setup):
     # setup.switch_to.window(setup.window_handles[0])
 
 
+# @pytest.fixture(scope="session")
+# def pdf_fixture(setup):
+#     driver, ss = setup
+#     pdf = PDF(pdf_filename="Testing PDF.pdf",
+#               param_path="data/param.txt",
+#               result_path="data/scenario_result.txt",
+#               cvpg_subtitle="Liquid Management - Cash Distribution",
+#               cvpg_author="Automation Team",
+#               cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",
+#               header_author="Automation Team",
+#               header_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate")
+#     return pdf
+
+
 @pytest.fixture(scope="session", autouse=True)
 def after_test_session(setup):
     yield  # Yield to ensure this runs after all tests
     print("=====AFTER TEST SESSION=====")
-    driver, ss = setup
-    log.info("Initiate PDF Object")
-    pdf = PDF(pdf_filename=ss.working_dir + "//TestingPDF_elcobrev2.pdf",
-              param_path="elcobre-v2//data//param.txt",
-              result_path="elcobre-v2//data//scenario_result.txt",
-              cvpg_subtitle="Liquid Managemen - Cash Ditribution",
+    # log.info("Initiate PDF Object")
+    # pdf = pdf_fixture
+    pdf = PDF(pdf_filename="Testing PDF.pdf",
+              param_path="data/param.txt",
+              result_path="data/scenario_result.txt",
+              cvpg_subtitle="Liquid Management - Cash Distribution",
               cvpg_author="Automation Team",
               cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",
               header_author="Automation Team",
@@ -123,7 +137,6 @@ def after_test_session(setup):
     pdf.data_reader()
     log.info("Run generate report PDF")
     pdf.generate_report()
-
     setup[0].refresh()
     log.info("Browser tab quit")
     setup[0].quit()

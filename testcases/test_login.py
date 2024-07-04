@@ -1,4 +1,5 @@
 import pytest
+from utilities.report_pdf import PDF
 
 
 @pytest.mark.login_page_tests
@@ -127,3 +128,15 @@ class TestLoginPage:
         pages.login_page.user_login("visual_user", "secret_sauce")
         base.func_take_screenshot_pass(screenshot=True, desc1="Login success22", desc2="image descriptions")
         base.ss.write_scenario_txt("Login with valid data22")
+
+
+pdf = PDF(pdf_filename="Testing PDF.pdf",
+          # param_path="data//param.txt",
+          # result_path="data//scenario_result.txt",
+          cvpg_subtitle="Liquid Management - Cash Distribution",
+          cvpg_author="Automation Team",
+          cvpg_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate",
+          header_author="Automation Team",
+          header_tcid="Cash Distribution Thru to Casa Thru - Fix - Immediate")
+pdf.data_reader()
+pdf.generate_report()
